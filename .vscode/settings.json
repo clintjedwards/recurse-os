@@ -1,0 +1,8 @@
+{
+    "rust-analyzer.cargo.target": "x86_64-recurse_os.json",
+    "rust-analyzer.check.allTargets": false,
+    "rust-analyzer.check.extraArgs": [
+        "--target",
+        "x86_64-recurse_os.json"
+    ]
+}
