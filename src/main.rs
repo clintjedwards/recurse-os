@@ -11,6 +11,8 @@
 // to the OS. As such we tell rust to not attempt to jump us to main.
 #![no_main]
 
+mod vga_buffer;
+
 use core::panic::PanicInfo;
 
 // By default the std lib contains a panic handler that is automatically given to us.
@@ -25,6 +27,8 @@ fn panic(_info: &PanicInfo) -> ! {
     loop {}
 }
 
+static HELLO: &[u8] = b"Hello World!";
+
 // Compilers usually take the function names that we give it and edit it to some degree
 // for a variety of reasons, one of which being that they need to be unique to be called
 // correctly. no_mangle tells the compiler to fuck off since we need this to be called
@@ -35,5 +39,7 @@ fn panic(_info: &PanicInfo) -> ! {
 // call a function.
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
+    vga_buffer::print_something();
+
     loop {}
 }
